@@ -17,7 +17,11 @@ class Maze():
 
         self.findPath(self.start, 0, trace)
 
-        print(self.solutions)
+        if len(self.solutions) > 0:
+            self.sortSolutions()
+            return self.solutions[0]
+        else:
+            return 0
 
     def findPath(self, cursor, count, trace):
 
@@ -75,4 +79,8 @@ class Maze():
     def addSolution(self, trace, count):
         sols = list(self.solutions)
         sols.append({'path': trace, 'pathLength': count})
+        self.solutions = sols
+
+    def sortSolutions(self):
+        sols = sorted(self.solutions, key=lambda x: x['pathLength'])
         self.solutions = sols

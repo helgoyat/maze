@@ -11,4 +11,5 @@ start = {'x': 0, 'y': 0}
 end = {'x': 3, 'y': 0}
 
 myMaze = maze.Maze(sample, start, end)
-myMaze.solve()
+solution = myMaze.solve()
+print(solution)
