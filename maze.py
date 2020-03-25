@@ -54,8 +54,8 @@ class Maze():
         isVisited = (trace[cursor['x']][cursor['y']] > 0)
 
         if isPath and not(isVisited):
-            isEnd = ((self.end['x'] == cursor['x'])
-                     and (self.end['y'] == cursor['y']))
+            isEnd = (self.end['x'] == cursor['x']
+                     and self.end['y'] == cursor['y'])
             nextCount = count + 1
             limit = self.size - 1
 
