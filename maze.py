@@ -8,20 +8,44 @@ class Maze():
 
     def solve(self):
 
-        trace = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
-        ]
+        isValid = self.validate()
 
-        self.findPath(self.start, 0, trace)
+        if isValid:
 
-        if len(self.solutions) > 0:
-            self.sortSolutions()
-            return self.solutions[0]
-        else:
-            return 0
+            trace = [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
+            ]
+
+            self.findPath(self.start, 0, trace)
+
+            if len(self.solutions) > 0:
+                self.sortSolutions()
+                return self.solutions[0]
+
+        return 0
+
+    def validate(self):
+        if (
+            len(self.maze) == self.size and
+            len(self.maze[0]) == self.size
+        ):
+
+            if (
+                self.start['x'] >= 0 and self.start['x'] <= self.size and
+                self.start['y'] >= 0 and self.start['y'] <= self.size and
+                self.end['x'] >= 0 and self.end['x'] <= self.size and
+                self.end['y'] >= 0 and self.end['y'] <= self.size
+            ):
+
+                if (
+                    self.maze[self.start['x']][self.start['y']] == 0 and
+                    self.maze[self.end['x']][self.end['y']] == 0
+                ):
+                    return True
+        return False
 
     def findPath(self, cursor, count, trace):
 
